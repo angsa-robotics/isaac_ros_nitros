@@ -41,7 +41,7 @@ add_library(${PROJECT_NAME} INTERFACE)
 install(FILES "${GXF_EXT_LIB_PATH}/lib${PROJECT_NAME}.so"
         DESTINATION "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/lib")
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    INTERFACE_LINK_LIBRARIES "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/lib/lib${PROJECT_NAME}.so"
+    INTERFACE_LINK_LIBRARIES "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/lib/lib${PROJECT_NAME}.so"
 )
 
 # Install headers
@@ -49,7 +49,7 @@ if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/gxf")
     install(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/gxf/"
             DESTINATION "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include")
     set_target_properties(${PROJECT_NAME} PROPERTIES
-            INTERFACE_INCLUDE_DIRECTORIES "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/include")
+            INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include")
 endif()
 
 install(TARGETS ${PROJECT_NAME}

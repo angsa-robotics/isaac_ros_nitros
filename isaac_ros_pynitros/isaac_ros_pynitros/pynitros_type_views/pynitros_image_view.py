@@ -86,3 +86,6 @@ class PyNitrosImageView(PyNitrosTypeViewBase):
 
     def get_encoding(self):
         return self.raw_msg.encoding
+
+    def get_header(self):
+        return self.raw_msg.header

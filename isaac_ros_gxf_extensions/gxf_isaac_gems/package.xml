@@ -32,6 +32,7 @@ SPDX-License-Identifier: Apache-2.0
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
 
   <depend>isaac_ros_common</depend>
+  <depend>negotiated</depend>
   <depend>isaac_ros_gxf</depend>
 
   <test_depend>ament_lint_auto</test_depend>

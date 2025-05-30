@@ -119,7 +119,7 @@ public:
     NodePtr node, const std::string & topic,
     const rmw_qos_profile_t qos = rmw_qos_profile_default) override
   {
-    subscribe(node.get(), topic, qos, rclcpp::SubscriptionOptions());
+    subscribe(node.get(), topic, qos, rclcpp::SubscriptionOptions(), "");
   }
 
   /**
@@ -136,7 +136,7 @@ public:
     NodeType * node, const std::string & topic,
     const rmw_qos_profile_t qos = rmw_qos_profile_default) override
   {
-    subscribe(node, topic, qos, rclcpp::SubscriptionOptions());
+    subscribe(node, topic, qos, rclcpp::SubscriptionOptions(), "");
   }
 
   /**
@@ -155,9 +155,18 @@ public:
     const rmw_qos_profile_t qos,
     rclcpp::SubscriptionOptions options) override
   {
-    subscribe(node.get(), topic, qos, options);
+    subscribe(node.get(), topic, qos, options, "");
     node_raw_ = nullptr;
     node_shared_ = node;
+  }
+
+  void subscribe(
+    NodeType * node,
+    const std::string & topic,
+    const rmw_qos_profile_t qos,
+    rclcpp::SubscriptionOptions options) override
+  {
+    subscribe(node, topic, qos, options, "");
   }
 
   /**
@@ -211,7 +220,7 @@ public:
   {
     if (!topic_.empty()) {
       if (node_raw_ != nullptr) {
-        subscribe(node_raw_, topic_, qos_, options_);
+        subscribe(node_raw_, topic_, qos_, options_, "");
       } else if (node_shared_ != nullptr) {
         subscribe(node_shared_, topic_, qos_, options_);
       }
