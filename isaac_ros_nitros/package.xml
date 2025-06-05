@@ -25,6 +25,7 @@ license agreement from NVIDIA CORPORATION is strictly prohibited.
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <depend>negotiated</depend>
+  <depend>ament_index_cpp</depend>
   <depend>rclcpp</depend>
   <depend>rclcpp_components</depend>
   <depend>std_msgs</depend>

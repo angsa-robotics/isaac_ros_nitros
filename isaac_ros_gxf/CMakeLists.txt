@@ -22,6 +22,8 @@ execute_process(COMMAND uname -m COMMAND tr -d '\n' OUTPUT_VARIABLE ARCHITECTURE
 message( STATUS "Architecture: ${ARCHITECTURE}" )
 
 find_package(ament_cmake_auto REQUIRED)
+find_package(ament_index_cpp REQUIRED)
+find_package(negotiated REQUIRED)
 ament_auto_find_build_dependencies()
 
 add_library(${PROJECT_NAME} STATIC src/isaac_ros_gxf.cpp)
@@ -56,57 +58,57 @@ list(APPEND ${PROJECT_NAME}_CONFIG_EXTRAS cmake/isaac_ros_gxf-extras.cmake)
 add_library(Core INTERFACE)
 set_target_properties(Core PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/include"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include"
 )
 set_property(TARGET Core PROPERTY
   INTERFACE_LINK_LIBRARIES
     magic_enum::magic_enum
-    "$<INSTALL_PREFIX>/lib/libgxf_core.so"
+    "${CMAKE_INSTALL_PREFIX}/lib/libgxf_core.so"
 )
 
 # Logger
 add_library(Logger INTERFACE)
 set_target_properties(Logger PROPERTIES
   INTERFACE_LINK_LIBRARIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/lib/logger/libgxf_logger.so"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/lib/logger/libgxf_logger.so"
   INTERFACE_INCLUDE_DIRECTORIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/include"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include"
 )
 
 # Std
 add_library(Std INTERFACE)
 set_target_properties(Std PROPERTIES
   INTERFACE_LINK_LIBRARIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/lib/std/libgxf_std.so"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/lib/std/libgxf_std.so"
   INTERFACE_INCLUDE_DIRECTORIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/include"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include"
 )
 
 # Multimedia
 add_library(Multimedia INTERFACE)
 set_target_properties(Multimedia PROPERTIES
   INTERFACE_LINK_LIBRARIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/lib/multimedia/libgxf_multimedia.so"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/lib/multimedia/libgxf_multimedia.so"
   INTERFACE_INCLUDE_DIRECTORIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/include"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include"
 )
 
 # Serialization
 add_library(Serialization INTERFACE)
 set_target_properties(Serialization PROPERTIES
   INTERFACE_LINK_LIBRARIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/lib/serialization/libgxf_serialization.so"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/lib/serialization/libgxf_serialization.so"
   INTERFACE_INCLUDE_DIRECTORIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/include"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include"
 )
 
 # Cuda
 add_library(Cuda INTERFACE)
 set_target_properties(Cuda PROPERTIES
   INTERFACE_LINK_LIBRARIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/lib/cuda/libgxf_cuda.so"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/lib/cuda/libgxf_cuda.so"
   INTERFACE_INCLUDE_DIRECTORIES
-    "$<INSTALL_PREFIX>/share/${PROJECT_NAME}/gxf/include"
+    "${CMAKE_INSTALL_PREFIX}/share/${PROJECT_NAME}/gxf/include"
 )
 
 install(TARGETS Core Logger Std Multimedia Serialization Cuda

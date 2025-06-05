@@ -150,7 +150,7 @@ class PyNitrosSubscriber():
                     f'[Cuda Error: {err}], {cuda.cuGetErrorString(err)}')
         elif isinstance(err, cudart.cudaError_t):
             if (err != 0):
-                raise RuntimeError(f'CudaRT Error: {err}')
+                raise RuntimeError(f'CudaRT Error: {err}, {cudart.cudaGetLastError()}')
         else:
             raise RuntimeError('Unknown error type: {}'.format(err))
 

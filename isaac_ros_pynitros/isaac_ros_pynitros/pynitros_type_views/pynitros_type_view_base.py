@@ -173,6 +173,7 @@ class PyNitrosTypeViewBase():
                 self._cpu_shared_mem.lock.acquire()
                 self._cpu_shared_mem.update_refcount(-1)
                 self._cpu_shared_mem.lock.release()
+                self._cpu_shared_mem.cpu_shared_mem.close_fd()
         else:
             # Free the memory
             cudart.cudaFree(self.gpu_ptr)

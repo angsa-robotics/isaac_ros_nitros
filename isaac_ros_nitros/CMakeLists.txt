@@ -75,6 +75,9 @@ ament_index_register_resource(cuapriltags CONTENT share/${PROJECT_NAME}/cuaprilt
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(vpi REQUIRED)
 find_package(yaml-cpp)
+find_package(magic_enum)
+find_package(ament_index_cpp REQUIRED)
+find_package(negotiated REQUIRED)
 
 # NitrosNode
 ament_auto_add_library(${PROJECT_NAME} SHARED
